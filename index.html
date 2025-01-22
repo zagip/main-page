@@ -45,6 +45,11 @@
                 transition: all 0.15s ease;
                 z-index: 1;
             }
+
+            /* Отключаем изменение курсора для кнопок */
+            .button {
+                cursor: none !important;
+            }
         }
         
         .container {
@@ -127,7 +132,6 @@
             text-decoration: none;
             font-weight: bold;
             transition: all 0.3s ease;
-            cursor: pointer;
         }
         
         .button:hover {
@@ -235,6 +239,7 @@
         <div class="buttons">
             <a href="https://t.me/+OtxxYjLgRP00NzVi" class="button">Telegram</a>
             <a href="https://pobeda.zagip.ru/" class="button">Загипычи Победа</a>
+            <a href="https://github.com/zagip" class="button">GitHub</a>
         </div>
         <div class="team">
             <div class="team-title">гипычи</div>
@@ -283,7 +288,7 @@
             content.addEventListener('mouseenter', () => {
                 content.classList.add('rainbow');
             });
-            content.addEventListener('mouseleheave', () => {
+            content.addEventListener('mouseleave', () => {
                 content.classList.remove('rainbow');
             });
         }
