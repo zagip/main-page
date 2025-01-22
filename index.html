@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Загипычи</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -139,6 +140,26 @@
             transform: translateY(-2px);
         }
 
+        .button.special {
+            box-shadow: 0 0 30px #ffd700;
+            animation: glow 1.5s ease-in-out infinite alternate;
+        }
+
+        .button.special:hover {
+            box-shadow: 0 0 20px #ffd700;
+            background: #ffed4a;
+            transform: translateY(-2px);
+        }
+
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 10px #ffd700;
+            }
+            to {
+                box-shadow: 0 0 20px #ffd700, 0 0 30px #ffd700;
+            }
+        }
+
         .team {
             margin: 40px 0;
             padding: 20px;
@@ -201,6 +222,23 @@
             z-index: 0;
         }
 
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: #ffd700;
+            pointer-events: none;
+            z-index: 9999;
+            animation: fall 3s ease-in infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
         /* Мобильные адаптации */
         @media (max-width: 768px) {
             .title {
@@ -238,7 +276,8 @@
         <div class="content">// lol</div>
         <div class="buttons">
             <a href="https://t.me/+OtxxYjLgRP00NzVi" class="button">Telegram</a>
-            <a href="https://pobeda.zagip.ru/" class="button">Загипычи Победа</a>
+            <a href="https://pobeda.zagip.ru/" class="button special">Загипычи Победа</a>
+            <a href="http://chat.zagip.ru/" class="button special">GipoChat</a>
             <a href="https://github.com/zagip" class="button">GitHub</a>
         </div>
         <div class="team">
@@ -336,19 +375,32 @@
             drops = Array(Math.floor(columns)).fill(1);
         });
 
-        // Konami code easter egg
+        // Конфетти функция
+        function createConfetti() {
+            const colors = ['#ffd700', '#ff0000', '#00ff00', '#0000ff', '#ff00ff'];
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = Math.random() * window.innerWidth + 'px';
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => {
+                    confetti.remove();
+                }, 3000);
+            }
+        }
+
+        // Обновленная пасхалка с конфетти
         let keys = [];
-        const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+        const secretCode = ['g', 'i', 'p'];
         
         document.addEventListener('keydown', (e) => {
             keys.push(e.key);
-            keys.splice(-konamiCode.length - 1, keys.length - konamiCode.length);
+            keys.splice(-secretCode.length - 1, keys.length - secretCode.length);
             
-            if (keys.join('') === konamiCode.join('')) {
-                document.body.style.animation = 'rainbow 2s linear infinite';
-                setTimeout(() => {
-                    document.body.style.animation = '';
-                }, 5000);
+            if (keys.join('') === secretCode.join('')) {
+                createConfetti();
             }
         });
     </script>
