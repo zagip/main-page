@@ -52,6 +52,26 @@
                 cursor: none !important;
             }
         }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(26, 26, 26, 0.9);
+            color: #ffd700;
+            padding: 15px 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 1px solid #ffd700;
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            font-size: 1em;
+        }
+
+        .notification.show {
+            opacity: 1;
+        }
         
         .container {
             text-align: center;
@@ -273,6 +293,7 @@
     <div class="cursor"></div>
     <div class="cursor-glow"></div>
     <canvas class="matrix-rain"></canvas>
+    <div class="notification">tap space ✨</div>
     
     <div class="container">
         <img src="/zagipichi_logo.png" alt="Загипычи логотип" class="logo">
@@ -411,6 +432,15 @@
                     confetti.remove();
                 }, 3000);
             }
+        }
+
+        // Показываем уведомление на 4 секунды только на десктопе
+        const notification = document.querySelector('.notification');
+        if (!isMobile) {
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 2500);
         }
 
         // Обновленная пасхалка с конфетти
