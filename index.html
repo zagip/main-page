@@ -224,17 +224,21 @@
 
         .confetti {
             position: fixed;
-            width: 10px;
-            height: 10px;
+            width: 8px;
+            height: 8px;
             background-color: #ffd700;
             pointer-events: none;
             z-index: 9999;
-            animation: fall 3s ease-in infinite;
+            animation: confettiFall 3s ease-out forwards;
         }
 
-        @keyframes fall {
-            to {
-                transform: translateY(100vh) rotate(360deg);
+        @keyframes confettiFall {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty)) rotate(var(--rot));
                 opacity: 0;
             }
         }
@@ -278,13 +282,15 @@
             <a href="https://t.me/+OtxxYjLgRP00NzVi" class="button">Telegram</a>
             <a href="https://pobeda.zagip.ru/" class="button special">Загипычи Победа</a>
             <a href="http://chat.zagip.ru/" class="button special">GipoChat</a>
+            <a href="https://t.me/zagipon_bot" class="button special">Zagipon BOT</a>
             <a href="https://github.com/zagip" class="button">GitHub</a>
         </div>
         <div class="team">
             <div class="team-title">гипычи</div>
             <div class="team-links">
                 <a href="https://mrvasil.ru">mrvasil</a>
-                <a href="https://st.zagip.ru">st41a</a>
+                <!-- <a href="https://st.zagip.ru">st41a</a> -->
+                <a href="https://t.me/st41a">st41a</a>
                 <a href="https://t.me/galtm">galtm</a>
                 <a href="https://vlppz.ru">vlppz</a>
                 <a href="https://t.me/ivblz">ivblz</a>
@@ -377,12 +383,28 @@
 
         // Конфетти функция
         function createConfetti() {
-            const colors = ['#ffd700', '#ff0000', '#00ff00', '#0000ff', '#ff00ff'];
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+            
             for (let i = 0; i < 100; i++) {
                 const confetti = document.createElement('div');
                 confetti.className = 'confetti';
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.left = Math.random() * window.innerWidth + 'px';
+                
+                // Случайный угол разлета
+                const angle = (Math.random() * Math.PI * 2);
+                // Случайная дистанция разлета
+                const distance = Math.random() * 400 + 200;
+                
+                // Вычисляем конечные координаты
+                const tx = Math.cos(angle) * distance;
+                const ty = Math.sin(angle) * distance;
+                
+                confetti.style.left = centerX + 'px';
+                confetti.style.top = centerY + 'px';
+                confetti.style.setProperty('--tx', tx + 'px');
+                confetti.style.setProperty('--ty', ty + 'px');
+                confetti.style.setProperty('--rot', (Math.random() * 720 - 360) + 'deg');
+                
                 document.body.appendChild(confetti);
                 
                 setTimeout(() => {
@@ -393,8 +415,8 @@
 
         // Обновленная пасхалка с конфетти
         let keys = [];
-        const secretCode = ['g', 'i', 'p'];
-        
+        const secretCode = [' '];
+         
         document.addEventListener('keydown', (e) => {
             keys.push(e.key);
             keys.splice(-secretCode.length - 1, keys.length - secretCode.length);
