@@ -263,6 +263,63 @@
             }
         }
 
+        .donate-box {
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            width: 90%;
+            max-width: 600px;
+        }
+
+        .donate-title {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #ffd700;
+        }
+
+        .ton-address {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(26, 26, 26, 0.5);
+            padding: 10px;
+            border-radius: 10px;
+            font-family: monospace;
+            transition: all 0.3s ease;
+            word-break: break-all;
+            position: relative;
+        }
+
+        .ton-label {
+            color: #ffd700;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .copy-button {
+            background: none;
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: all 0.3s ease;
+            margin-left: auto;
+            width: 20px;
+            height: 20px;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAYAAAA4qEECAAAACXBIWXMAAAsTAAALEwEAmpwYAAACRUlEQVR4nO2cMW7UUBCGPwWUpQgcIKFG4gLpKGiQiHKNdIQtOQiIi6TICUKUiuQMkIoqSqKQapC1ptv1OvvsN+P3/k/6S6+ev5039o61BiGEEEKIknkBzIEL4A6wDHkEzoB9KuE1cJVJ7rI8AB+ooJKvHCVXI3seQHIVsi8CCK5C9q2T0PvaZJtT3q35kv8ChxSEOYXaZJuj6Kpkm7PoamRbANFVyLYgoouXbYFEFy3bgokuVrYFFB1edteoc2qiG95H/AW5btQ5RdHhZPcZdU5VdF/Z+1FGndFE7w4su3lSE2LUGU30lw3Os0t281gsxKgzmujHVvaQlT06fU4s5VibSCQaica7ClXR+ItT68Bfqno0Eq27jlRStpUVlNGRaCTaVNELvLe7Wgf+4tSj8ZeqiyESvRQrKKOTsggrKBKNRONdhapo/MWpdeAvVT0aidZdRyop28oKyuhINBJtqugF3ttdrQN/cerR+EvVxRCJXooVlNFJWYQVFIlGovGuwuIq+mWwF6PYwLmJIvrNRF71YxvmPIrojyuO/RxA0hD5FEX0txXHzoDLAKJS8hPYjiL6F/C841+3lxOWvJdDcl/RTY46PmMGHLe9LvoFslnfj7ZdZKnk//Rd4HXH3YfowVOq4RR4Jqub8dSt9xXYkuzxRRtwAryS7PFFG/CnfTPCqrsRMZBoa/Mb+A4cAG+BHRketqItYELjLcck2l+clVTR0X/JWaRRZwoadWZCo85MaNSZEY06M6JRpxBCCCGEEEJQAP8AvaVTEW6O4O8AAAAASUVORK5CYII=');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            filter: invert(79%) sepia(81%) saturate(436%) hue-rotate(359deg) brightness(103%) contrast(105%) opacity(50%);
+        }
+
+        .copy-button:hover {
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+
         /* Мобильные адаптации */
         @media (max-width: 768px) {
             .title {
@@ -317,6 +374,15 @@
                 <a href="https://vlppz.ru">vlppz</a>
                 <a href="https://t.me/ivblz">ivblz</a>
                 <a href="https://t.me/ilyastarcek">ilyastarcek</a>
+            </div>
+        </div>
+
+        <div class="donate-box">
+            <div class="donate-title">donate</div>
+            <div class="ton-address">
+                <span class="ton-label">TON:</span>
+                <span class="address-text">UQAg0ASFaNyyP8tuBzcdv8rev8-cM3pairuBvYv_Pf4EDOOo</span>
+                <button class="copy-button" onclick="copyTonAddress(this)" title="Copy address"></button>
             </div>
         </div>
     </div>
@@ -456,6 +522,18 @@
                 createConfetti();
             }
         });
+
+        function copyTonAddress(element) {
+            const addressText = element.parentElement.querySelector('.address-text').innerText.trim();
+            navigator.clipboard.writeText(addressText).then(() => {
+                const notification = document.querySelector('.notification');
+                notification.textContent = 'copied ✨';
+                notification.classList.add('show');
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 2500);
+            });
+        }
     </script>
 </body>
 </html>
