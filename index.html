@@ -320,6 +320,14 @@
             transform: translateY(-2px);
         }
 
+        .ton-balance {
+            font-size: 0.9em;
+            color: #ffd700;
+            opacity: 0.8;
+            margin-top: 10px;
+            font-family: monospace;
+        }
+
         /* Мобильные адаптации */
         @media (max-width: 768px) {
             .title {
@@ -384,6 +392,7 @@
                 <span class="address-text">UQAg0ASFaNyyP8tuBzcdv8rev8-cM3pairuBvYv_Pf4EDOOo</span>
                 <button class="copy-button" onclick="copyTonAddress(this)" title="Copy address"></button>
             </div>
+            <div class="ton-balance">Loading balance...</div>
         </div>
     </div>
 
@@ -534,6 +543,37 @@
                 }, 2500);
             });
         }
+
+        async function updateBalance() {
+            const address = document.querySelector('.address-text').innerText;
+            try {
+                // Получаем баланс TON
+                const tonResponse = await fetch(`https://toncenter.com/api/v2/getAddressBalance?address=${address}`);
+                const tonData = await tonResponse.json();
+                const tonBalance = parseFloat(tonData.result) / 1e9; // Конвертируем из нановеличин
+
+                // Получаем курс TON/USD
+                const priceResponse = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=the-open-network&vs_currencies=usd');
+                const priceData = await priceResponse.json();
+                const tonPrice = priceData['the-open-network'].usd;
+
+                // Вычисляем баланс в USD
+                const usdBalance = (tonBalance * tonPrice).toFixed(2);
+                
+                // Обновляем отображение
+                document.querySelector('.ton-balance').textContent = 
+                    `Balance: ${tonBalance.toFixed(2)} TON ($${usdBalance})`;
+            } catch (error) {
+                console.error('Error fetching balance:', error);
+                document.querySelector('.ton-balance').textContent = 
+                    'Could not load balance';
+            }
+        }
+
+        // Обновляем баланс при загрузке страницы
+        updateBalance();
+        // Обновляем баланс каждые 5 минут
+        setInterval(updateBalance, 300000);
     </script>
 </body>
 </html>
