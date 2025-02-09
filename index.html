@@ -187,14 +187,14 @@
         }
 
         .team {
-            margin: 40px 0;
+            margin: 20px 0;
             padding: 20px;
             background: rgba(255, 215, 0, 0.1);
             border-radius: 15px;
             backdrop-filter: blur(5px);
             width: 90%;
             max-width: 600px;
-            margin-top: 15px;
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.15);
         }
 
         .team-title {
@@ -278,6 +278,7 @@
             backdrop-filter: blur(5px);
             width: 90%;
             max-width: 600px;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.15);
         }
 
         .donate-title {
@@ -388,6 +389,45 @@
                 opacity: 0;
             }
         }
+
+        .other-services {
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.15);
+        }
+
+        .other-services-title {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #ffd700;
+        }
+
+        .other-services-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .other-services-buttons .button {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid #ffd700;
+            color: #ffd700;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-weight: normal;
+            transition: all 0.2s ease;
+        }
+
+        .other-services-buttons .button:hover {
+            background: rgba(255, 215, 0, 0.2);
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
@@ -401,9 +441,10 @@
         <div class="buttons">
             <div class="service-buttons">
                 <a href="https://pobeda.zagip.ru/" class="button special">Загипычи Победа</a>
-                <a href="http://chat.zagip.ru/" class="button special">GipoChat</a>
                 <a href="http://music.zagip.ru/" class="button special">GipMusic</a>
-                <a href="https://t.me/zagipon_bot" class="button special">Zagipon BOT</a>
+                <a href="https://wall.zagip.ru/" class="button special">Zagip Wall</a>
+                <a href="http://chat.zagip.ru/" class="button special">GipoChat</a>
+                <!-- <a href="https://t.me/zagipon_bot" class="button special">Zagipon BOT</a> -->
             </div>
             <div class="social-buttons" style="margin-top: -15px;">
                 <a href="https://t.me/+OtxxYjLgRP00NzVi" class="button" style="padding: 0px 10px; ">
@@ -430,6 +471,15 @@
             </div>
         </div>
 
+        <div class="other-services">
+            <div class="other-services-title">other</div>
+            <div class="other-services-buttons">
+                <a href="https://server.zagip.ru" class="button">Zagip server</a>
+                <a href="https://t.me/sigamguatbotruzlbot" class="button">Забимбыш</a>
+                <a href="https://t.me/zagipon_bot" class="button">Zagipon BOT</a>
+            </div>
+        </div>
+
         <div class="donate-box">
             <div class="donate-title">donate</div>
             <div class="ton-address">
@@ -442,7 +492,7 @@
     </div>
 
     <footer class="footer">
-        <div class="copyright">© 2025 Загипычи Official. Все права защищены.</div>
+        <div class="copyright">© 2025 Загипычи Official. All rights reserved.</div>
     </footer>
 
     <script>
