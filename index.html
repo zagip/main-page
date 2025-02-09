@@ -483,6 +483,24 @@
         let columns = canvas.width / fontSize;
         let drops = Array(Math.floor(columns)).fill(1);
 
+        // Инициализируем начальное состояние матрицы
+        function initMatrix() {
+            ctx.fillStyle = 'rgba(26, 26, 26, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Заполняем drops случайными значениями для создания эффекта "уже идущего дождя"
+            drops = drops.map(() => Math.floor(Math.random() * canvas.height / fontSize));
+            
+            // Рисуем начальное состояние
+            ctx.fillStyle = '#ffd70022';
+            ctx.font = fontSize + 'px monospace';
+            
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+            }
+        }
+
         function drawMatrix() {
             ctx.fillStyle = 'rgba(26, 26, 26, 0.05)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -501,6 +519,8 @@
             }
         }
 
+        // Инициализируем матрицу при загрузке
+        initMatrix();
         setInterval(drawMatrix, 50);
 
         // Resize handling
