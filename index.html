@@ -22,34 +22,12 @@
         /* Курсор только для десктопа */
         @media (hover: hover) and (pointer: fine) {
             body {
-                cursor: none;
+                cursor: default;
             }
             
-            .cursor {
-                width: 20px;
-                height: 20px;
-                border: 2px solid #ffd700;
-                border-radius: 50%;
-                position: fixed;
-                pointer-events: none;
-                transition: all 0.1s ease;
-                z-index: 9999;
-            }
-            
-            .cursor-glow {
-                width: 400px;
-                height: 400px;
-                background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, rgba(255,215,0,0) 70%);
-                position: fixed;
-                border-radius: 50%;
-                pointer-events: none;
-                transition: all 0.15s ease;
-                z-index: 1;
-            }
-
-            /* Отключаем изменение курсора для кнопок */
+            /* Возвращаем стандартное поведение курсора для кнопок */
             .button {
-                cursor: none !important;
+                cursor: pointer !important;
             }
         }
 
@@ -355,8 +333,6 @@
     </style>
 </head>
 <body>
-    <div class="cursor"></div>
-    <div class="cursor-glow"></div>
     <canvas class="matrix-rain"></canvas>
     <div class="notification">tap space ✨</div>
     
@@ -404,19 +380,6 @@
         // Определяем, является ли устройство мобильным
         const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
         
-        // Cursor effect только для десктопа
-        if (!isMobile) {
-            const cursor = document.querySelector('.cursor');
-            const cursorGlow = document.querySelector('.cursor-glow');
-            
-            document.addEventListener('mousemove', (e) => {
-                cursor.style.left = e.clientX - 10 + 'px';
-                cursor.style.top = e.clientY - 10 + 'px';
-                cursorGlow.style.left = e.clientX - 200 + 'px';
-                cursorGlow.style.top = e.clientY - 200 + 'px';
-            });
-        }
-
         // Logo spin on click
         const logo = document.querySelector('.logo');
         logo.addEventListener('click', () => {
