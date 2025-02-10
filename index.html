@@ -132,7 +132,7 @@
 
         .social-buttons {
             display: flex;
-            gap: 20px;
+            gap: 13px;
             flex-wrap: wrap;
             justify-content: center;
         }
@@ -428,6 +428,27 @@
             background: rgba(255, 215, 0, 0.2);
             transform: translateY(-2px);
         }
+
+        .credits {
+            background: rgba(255, 215, 0, 0.1);
+            padding: 8px 15px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            color: #ffd700;
+            opacity: 0.7;
+            margin: 20px 0 10px 0;
+            backdrop-filter: blur(5px);
+        }
+
+        .credits a {
+            color: #ffd700;
+            text-decoration: none;
+            transition: opacity 0.2s ease;
+        }
+
+        .credits a:hover {
+            opacity: 0.8;
+        }
     </style>
 </head>
 <body>
@@ -435,22 +456,26 @@
     <div class="notification">tap space ✨</div>
     
     <div class="container">
-        <img src="static/zagipichi_logo.png" alt="Загипычи логотип" class="logo">
+        <img src="zagipichi_logo.png" alt="Загипычи логотип" class="logo">
         <h1 class="title">Загипычи</h1>
         <div class="content">// lol</div>
         <div class="buttons">
             <div class="service-buttons">
                 <a href="https://pobeda.zagip.ru/" class="button special">Загипычи Победа</a>
-                <a href="http://music.zagip.ru/" class="button special">GipMusic</a>
+                <a href="http://music.zagip.ru/" class="button special">GipoMusic</a>
                 <a href="https://wall.zagip.ru/" class="button special">Zagip Wall</a>
                 <a href="http://chat.zagip.ru/" class="button special">GipoChat</a>
                 <!-- <a href="https://t.me/zagipon_bot" class="button special">Zagipon BOT</a> -->
             </div>
             <div class="social-buttons" style="margin-top: -15px;">
-                <a href="https://t.me/+OtxxYjLgRP00NzVi" class="button" style="padding: 0px 10px; ">
+                <a href="/info.html" class="button" style="padding: 8px 8px;">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEcElEQVR4nO2dzYvWVRTHP2n0OAMZvoaJ2iqLltUuo8CU0rTCWoorJUWT8k8IamFi6iwscuHytxCkRZgtSpJ2pb24UEezsaDMyWmRuRhP/OBIw8Dz9KjPvfec3+984LuZ13Pud7jv9wwEQRAEQRAEQRAEQRDcLguB1cAOYAT4HPgOGAXGgRuqcf1Y/bnj+rXbgVXAgmj2O2cYWA98oI17E5C7VP0zTgN7gXXAUBjUmxnA08BBYGIABvyf6t9xGHgJmBnm/McsYCtwIYMJ3VR3c28AnbZ3S7uAXwsaIdNUx/KWxtYq6m7iogEDpIvGgA20gIeBTww0uPSpo8BSGsrLOi0VZ5oAXqdBdHT6Ks51sAmD/jzgawONKQPSV8BcnPKQLuqkYToDLMEZjwI/G2g8SaRLwHKcsBj4yUCjSWJdBpbhYMw4Y6CxJJN+tDymdBo2gEufOml19nXAQONIIdXTelNsMNAoUlivYmg75JqBBpHC+tPKIF9yb+qangpuUo1kOkvptfdVlPUFk/+iy7Fsfdz7ZcG41lKI4YLrjbPA/T1imw2cLxTbhVLHw7sK/hVu7CO+TQXj20mBY9eSJ30P9hHjosKr+Kxrk60Fk5U+k+0UjnELGW+HlLyQIMBjfcT5eOEY6zHsngx+8FzhRAV4p4843zUQ5zMZ/OCQgUT/Bp7sEeNTwHUDcX6UY6r7l4FERReFG7ULvcVMnV1NGIpxqKkLQemi34BPVb8biGe61qQ0pAmXFSSzdqc0pIln5JJY36YyY+GAbqG3TZPA/BSGrDaQnDjVyhSG7DCQmDjVthSGjBhITJxqXwpDjhtITJzqWApDvjeQmEx7MlB10ZiB+Kaqfko3cKxdfqt6xFoZiG+q6s3YgXPVQGLi1JArKQy5YSAxcWrIP2EIzTckuixsdVkxqGNrULc27a0cjSGn27AwrBwZcqwNWyeVI0P2tWFzsXJkyLY2bL9XjgxJsv2+wNgBVeXEkEl96tf4I9zKiSHfkJC9BhIUZ4YkveSwzkCC4syQF1MaMmTo+VrlwJDkF+VqPjaQqDgx5EMy8KyBRMWJIStyGDJDaxSWTrYybsi5XM8R0IKRpROujBuymYzUr5N+CUPoZsZYiXIbb4chdDOk3vfLznDhyqKV0S7rvD6KLcILBvpqadN7kH44aqARxIiOYIClWnhFWq5xS7UY1xrbmpfMqnN/BWO0+bnbHgzS0XJ30jKdAO7DKA8Apww0kmTSD5aLYLatTOyYp0L9y7XYsDRUl4BHcMYivbEnDazVuwSnzG3YQH8CmINz7gXec75OuanTerOzqTutk+L1H7q8RkNZ5mzv64jn8eJ2t1pKV6WTHhq1sGubmyGt3nnZgAEyZW3xZsnzDCtbLlsK1tkVvZCwuWmD9iB4Qmczf2S6xHZYb6Znux3ilVnah+/RelOTAzBgUi8+v6/XO1vdLd0t84Hn9eHLfuAz3cQc1dfBt/5991X92Cl9RrZfv2dlyicBQRAEQRAEQRAEQRDQUP4FhzGgXHjslgoAAAAASUVORK5CYII=" 
+                    alt="info" width="30" height="30" style="width: 33px; height: 33px;">    
+                </a>
+                <a href="https://t.me/+OtxxYjLgRP00NzVi" class="button" style="padding: 0px 7px; ">
                     <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFZklEQVR4nO2dTWxVRRSAv4q0mIjVCpK4MRYTRZSFgj8tQmI0UROj0mpEiSL+LGx1IQbiAkLElXEhKkT8CdEYTTRUK90osjKuNNGFAaMJGhHxpyUkitpqGTPmNJKmfX333pm55753vuRsaDtz5pzHnXt+Zh4YhmEYhmEYhmEYhmEYhhGLduAKoBe4D+gHNor0y7/5ny2T3zUC0gasALYA+4AjgMsoR+Rvt8hYreah7E7oBQaB4zkcMJP4Md8DemQuYxouAHYARyM4YTrxc20HFppX/ucS4HXg74SOmCzjwB7gsmZ2zFnANjGGUyIn5MMxnyaiBXgAGFbgADeN/AqsE10bmrOBIQUGd3XK+6JzQ+Jjh4MKjOwyyvdANw3GPcCYAuO6nOJ1X0OD8KiyjdsV2PA3UHGeUmBIF1i2UlH6FRjPRZL1VIy7G+Qx5Wo8vtZSEborvoG7OsWv8WoqEH1/p8BYLuErsdo4pUWyqK7JZEhrRP+gAuO4ksQXxVTRIfkf16QyDMxDEa8oMIorWV5ECZfKa6BrchkHFqGANxUYwykRX0spvez6jwJDuBri//d+IxXBZyW35gPXG4BrgcuBq4CHgUMF5/JVz84yHbJDgcHdFEb5GNgErATOyLCec4FfCs7/AiXRlrghwdWQH2RTvS1AL9YzBXUZKavV6PaSnTAqjyGvx6kB1/VQAN38ByM5gyU54kvZB2KlLFYH0HGAxLRGamJzNeQLqTzOiry2mwPoejz1Y2tlQkd8AtyYcG3XB9J7eUKd/+uTje2Ig/JpTc0tgfTfnFLpfREd8RfwJHAa5XBXoHXsTal0ni70euRDCTYbIWt9OJXC7ZGCuY1K6gqPB8wQzE3V8KaxEa0b+AA4AOwCFuQcZ1vAtS0lAb0BFf4oUDxx/xQ5ta+BOTnGGgi4vlUkYG0gZQcDHZjZUCP9f0eO8T4L6JB7ScAjARR9C5hdUI8W4OkZ5vEZ3KyErHz63rToPBHAGUWj7VnAq3W8KFyccdwFAZ3hxFaqHTIm9fcizKnzOe/flrJyXRUdUuSR5eOXIpwusUqtOfx+8ljO8dcHdkgfyjf10QLHxebXseGOSTUwL7sCOyTJpt5TUElfRs3KecBXdWRYbyq4tv2BHbKqKoHhUIZs6KI6at1HAwSX50TonllatdTJfqlB+9NJ1wAXSpNAp7QX+Wf6sRnG+BFYoizgTZo6iZlcdBnlp4BdHs8F1i1ZcjF2+t1lkDyR+HTMtEepTr+nKFC5OsQffwjB4gi6+TakZKxQ4AwXsHayKYJuSUu4bSU0ObgpxD/3Q/B5YL1+C5Cry4yGwzknAvRALYmg125KoGiAGPLT2FVgHS9H0OlWmryV9FjOwNAXx/6IcHintFvrtitwhhP5E7hTwWb+PCWyUOFxhJ2SFa4nP/Z74LlLP47geUOBE9wkOST9VafU0PvdCPO+hgIWK7614YCUUedNKv2GavU5WbwNLkIJLykwvqsh/rH6KfBOhBTJhPjDS2roCHDyyFVYhjXe6LBOgWFcSaLyIppmvVpjj5IW2Cnx2ddvFRjJJRLVl89M0NUk1zONAldSEVYrfhV2gZKaSTpKQtKnwHAukuTt+yqdrQqM5wJLZS/BnMCuiVXImopv9KOSG2sollX4qvEuGpR2ySe5Cl3G30GD0yJpFs25r58lHaI2Ao/BmXLAUlOBa1wuIVN1f2IZVcedCr7y6G0tV/RpoVPq0SMJHTEic55f9uI10yq9VgMRat5OxtwtrTr2nYYZmS0tmZuleflwztvm9soYy8voKGx05spBmB55E+o76atX+yTp1yO/k+x8hmEYhmEYhmEYhmEYhmHQZPwLuyE0gpG98vUAAAAASUVORK5CYII="
                         alt="telegram" width="35" height="35" style="width: 40px; height: 40px;">
-                    Telegram&nbsp;&nbsp; 
+                    Telegram&nbsp;&nbsp;&nbsp; 
                 </a>
                 <a href="https://github.com/zagip" class="button" style="padding: 10px 10px;">
                     <img src="data:image/png;base64,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" 
@@ -463,7 +488,7 @@
             <div class="team-title">гипычи</div>
             <div class="team-links">
                 <a href="https://mrvasil.ru">mrvasil</a>
-                <a href="https://st.zagip.ru">st41a</a>
+                <a href="https://t.me/st41a">st41a</a>
                 <a href="https://t.me/galtm">galtm</a>
                 <a href="https://vlppz.ru">vlppz</a>
                 <a href="https://t.me/ivblz">ivblz</a>
@@ -475,7 +500,7 @@
             <div class="other-services-title">other</div>
             <div class="other-services-buttons">
                 <a href="https://server.zagip.ru" class="button">Zagip server</a>
-                <a href="https://t.me/sigamguatbotruzlbot" class="button">Забимбыш</a>
+                <a href="https://t.me/sigamguatbotruzlbot" class="button">Забимбыш BOT</a>
                 <a href="https://t.me/zagipon_bot" class="button">Zagipon BOT</a>
             </div>
         </div>
@@ -489,6 +514,8 @@
             </div>
             <div class="ton-balance">Loading balance...</div>
         </div>
+
+        <div class="credits">designed by <b><a href="https://mrvasil.ru">mrvasil</a></b></div>
     </div>
 
     <footer class="footer">

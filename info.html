@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О Загипычах</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #ffd700;
+            background: #1a1a1a;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            border-bottom: 2px solid #ffd700;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+
+        a {
+            color: #ffd700;
+            text-decoration: underline;
+            transition: all 0.2s;
+        }
+
+        a:hover {
+            opacity: 0.8;
+            text-decoration: none;
+        }
+
+        .service-card {
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            backdrop-filter: blur(5px);
+        }
+
+        .service-title {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #ffd700;
+        }
+
+        .service-description {
+            margin-bottom: 15px;
+        }
+
+        .service-link {
+            display: inline-block;
+            background: rgba(255, 215, 0, 0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .service-link:hover {
+            background: rgba(255, 215, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .team-member {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 5px 15px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 15px;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .team-member:hover {
+            background: rgba(255, 215, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 215, 0, 0.2);
+            padding: 10px 20px;
+            border-radius: 20px;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 215, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            .back-button {
+                position: static;
+                display: inline-block;
+                margin-bottom: 20px;
+            }
+        }
+
+        .spoiler {
+            background-color: rgba(255, 215, 0, 0.2);
+            color: transparent;
+            border-radius: 4px;
+            padding: 0 4px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .spoiler:hover {
+            color: #ffd700;
+        }
+    </style>
+</head>
+<body>
+    <a href="/" class="back-button">← Назад</a>
+
+    <h1>О Загипычах</h1>
+    <p>
+        Загипычи - команда школьников разработчиков/CTF'еров/DevOps'еров/дизайнеров из Москвы (школа Силаэдр).
+        <br>Почти все сервисы выложены на <a href="https://github.com/zagip">GitHub</a>. Контрибьюты и предложения приветствуются!
+    </p>
+
+    <h2>Сервисы</h2>
+
+    <div class="service-card">
+        <div class="service-title">GipoMusic</div>
+        <div class="service-description">
+            Сборка наших лучших нейро-треков, которые создавались на основе реальных историй загипычей.
+        </div>
+        <a href="http://music.zagip.ru/" class="service-link">Перейти →</a>
+    </div>
+
+    <div class="service-card">
+        <div class="service-title">Загипычи Победа</div>
+        <div class="service-description">
+            Страничка о нас, в формате <a href="https://растпобеда.рф/">растпобеда.рф</a> =)
+        </div>
+        <a href="https://pobeda.zagip.ru/" class="service-link">Перейти →</a>
+    </div>
+
+    <div class="service-card">
+        <div class="service-title">Zagip Wall</div>
+        <div class="service-description">
+            Доска с историей сообщений и медиа, которые были отправленны нам в <a href="#zagipon-bot">предложку</a>.
+        </div>
+        <a href="https://wall.zagip.ru/" class="service-link">Перейти →</a>
+    </div>
+
+    <div class="service-card">
+        <div class="service-title">GipoChat</div>
+        <div class="service-description">
+            Очень простой самописанный hackerchat style веб-мессенджер.
+        </div>
+        <a href="http://chat.zagip.ru/" class="service-link">Перейти →</a>
+    </div>
+
+    <div class="service-card">
+        <div class="service-title">Забимбыш BOT</div>
+        <div class="service-description">
+            Бот на основе генеративной модели llama3, который мы обучили на истории нашего чата <span class="spoiler">и немного на матах</span>. Он шарит за локальные мемы и пытается шутить. Уже, он постоянно всем отвечает в нескольких каналах.
+        </div>
+        <a href="https://t.me/sigamguatbotruzlbot" class="service-link">Перейти →</a>
+    </div>
+
+    <div class="service-card" id="zagipon-bot">
+        <div class="service-title">Zagipon BOT</div>
+        <div class="service-description">
+            Бот-предложка для отправки текста и медиа в наш <a href="https://t.me/+OtxxYjLgRP00NzVi">канал</a>.
+        </div>
+        <a href="https://t.me/zagipon_bot" class="service-link">Перейти →</a>
+    </div>
+
+    <div class="service-card">
+        <div class="service-title">Zagip Server</div>
+        <div class="service-description">
+            Страница с дашбордом нашей серверной инфраструктуры. (32 CPU, 128 GB RAM, 2x838 GB SSD)
+        </div>
+        <a href="https://server.zagip.ru" class="service-link">Перейти →</a>
+    </div>
+
+    <h2>Команда</h2>
+    <p>
+        <a href="https://mrvasil.ru" class="team-member">mrvasil</a>
+        <a href="https://t.me/st41a" class="team-member">st41a</a>
+        <a href="https://t.me/galtm" class="team-member">galtm</a>
+        <a href="https://vlppz.ru" class="team-member">vlppz</a>
+        <a href="https://t.me/ivblz" class="team-member">ivblz</a>
+        <a href="https://t.me/ilyastarcek" class="team-member">ilyastarcek</a>
+    </p>
+</body>
+</html>
