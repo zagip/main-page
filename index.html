@@ -471,7 +471,6 @@
                 <a href="https://pobeda.zagip.ru/" class="button special">Загипычи Победа</a>
                 <a href="http://music.zagip.ru/" class="button special">GipoMusic</a>
                 <a href="http://chat.zagip.ru/" class="button special">GipoChat</a>
-                <a href="http://zagip.ru:53000/" class="button special">Agario</a>
                 <!-- <a href="https://zagip.ru/slots" class="button special">Slots</a> -->
                 <!-- <a href="https://t.me/zagipon_bot" class="button special">Zagipon BOT</a> -->
             </div>
@@ -498,7 +497,7 @@
         </div>
 
         <div class="team">
-            <div class="team-title">гипычи</div>
+            <div class="team-title">Гипычи</div>
             <div class="team-links">
                 <a href="https://mrvasil.ru">mrvasil</a>
                 <a href="https://st.zagip.ru">st41a</a>
@@ -510,18 +509,19 @@
         </div>
 
         <div class="other-services">
-            <div class="other-services-title">other</div>
+            <div class="other-services-title">Other</div>
             <div class="other-services-buttons">
                 <!-- <a href="https://server.zagip.ru" class="button">Zagip server</a> -->
-                <a href="https://wall.zagip.ru/" class="button">Zagip Wall</a>
+                <!-- <a href="https://wall.zagip.ru/" class="button">Zagip Wall</a> -->
+                <a href="http://zagip.ru:53000/" class="button">Agario</a>
                 <a href="https://t.me/sigamguatbotruzlbot" class="button">Забимбыш BOT</a>
                 <a href="https://t.me/zagipon_bot" class="button">Zagipon BOT</a>
-                <a href="https://zagip.ru/slots/" class="button">Slots</a>
+                <!-- <a href="https://zagip.ru/slots/" class="button">Slots</a> -->
             </div>
         </div>
 
         <div class="donate-box">
-            <div class="donate-title">donate</div>
+            <div class="donate-title">Donate</div>
             <div class="ton-address">
                 <span class="ton-label">TON:</span>
                 <span class="address-text">UQAg0ASFaNyyP8tuBzcdv8rev8-cM3pairuBvYv_Pf4EDOOo</span>
@@ -666,13 +666,16 @@
         // Обновленная пасхалка с конфетти
         let keys = [];
         const secretCode = [' '];
+        let lastEffectTime = 0; // Время последнего запуска эффекта
          
         document.addEventListener('keydown', (e) => {
             keys.push(e.key);
             keys.splice(-secretCode.length - 1, keys.length - secretCode.length);
             
-            if (keys.join('') === secretCode.join('')) {
+            const currentTime = Date.now();
+            if (keys.join('') === secretCode.join('') && (currentTime - lastEffectTime > 500)) {
                 createConfetti();
+                lastEffectTime = currentTime;
             }
         });
 
