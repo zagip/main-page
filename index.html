@@ -14,7 +14,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            background: #1a1a1a;
+            background: linear-gradient(135deg, rgba(26,26,26,1) 0%, rgba(38,38,38,1) 100%);
             color: #ffd700;
             overflow-x: hidden;
             width: 100%;
@@ -36,20 +36,22 @@
             position: fixed;
             top: 20px;
             left: 20px;
-            background: rgba(26, 26, 26, 0.9);
+            background: rgba(255, 215, 0, 0.1);
             color: #ffd700;
             padding: 15px 30px;
             border-radius: 15px;
-            backdrop-filter: blur(5px);
-            border: 1px solid #ffd700;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 215, 0, 0.2);
             z-index: 9999;
             opacity: 0;
-            transition: opacity 0.3s ease;
-            font-size: 1em;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 8px 32px 0 rgba(255, 215, 0, 0.1);
+            transform: translateY(-20px);
         }
 
         .notification.show {
             opacity: 1;
+            transform: translateY(0);
         }
         
         .container {
@@ -65,20 +67,25 @@
             width: 100%;
             max-width: 100%;
             box-sizing: border-box;
+            background: radial-gradient(circle at center, rgba(255, 215, 0, 0.05) 0%, transparent 70%);
         }
         
         .logo {
             width: 200px;
             height: 200px;
             object-fit: cover;
-            border-radius: 20px;
+            border-radius: 30px;
             margin-bottom: 20px;
-            transition: transform 0.3s ease;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             cursor: pointer;
+            box-shadow: 0 8px 32px 0 rgba(255, 215, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.1);
         }
         
         .logo:hover {
-            transform: rotate(5deg) scale(1.05);
+            transform: translateY(-10px) rotate(5deg) scale(1.05);
+            box-shadow: 0 15px 45px 0 rgba(255, 215, 0, 0.2);
         }
         
         .logo.spin {
@@ -91,10 +98,16 @@
         }
         
         .title {
-            font-size: 3em;
+            font-size: 3.5em;
             margin: 20px 0;
             color: #ffd700;
             position: relative;
+            font-weight: 700;
+            letter-spacing: -1px;
+            background: linear-gradient(to right, #ffd700, #ffed4a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
         }
         
         .content {
@@ -147,29 +160,39 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            background: #ffd700;
-            color: #1a1a1a;
+            background: rgba(255, 215, 0, 0.1);
+            color: #ffd700;
             padding: 12px 25px;
             border-radius: 25px;
             text-decoration: none;
             font-weight: bold;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(255, 215, 0, 0.1);
         }
         
         .button:hover {
-            background: #ffed4a;
-            transform: translateY(-2px);
+            background: rgba(255, 215, 0, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 45px 0 rgba(255, 215, 0, 0.2);
         }
 
         .button.special {
-            box-shadow: 0 0 30px #ffd700;
-            animation: glow 1.5s ease-in-out infinite alternate;
+            background: rgba(255, 215, 0, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(255, 215, 0, 0.15);
+            animation: specialGlow 2s ease-in-out infinite alternate;
         }
 
-        .button.special:hover {
-            box-shadow: 0 0 20px #ffd700;
-            background: #ffed4a;
-            transform: translateY(-2px);
+        @keyframes specialGlow {
+            0% {
+                box-shadow: 0 8px 32px 0 rgba(255, 215, 0, 0.15);
+                border-color: rgba(255, 215, 0, 0.2);
+            }
+            100% {
+                box-shadow: 0 15px 45px 0 rgba(255, 215, 0, 0.3);
+                border-color: rgba(255, 215, 0, 0.4);
+            }
         }
 
         .button svg {
@@ -183,24 +206,21 @@
             height: 35px;
         }
 
-        @keyframes glow {
-            from {
-                box-shadow: 0 0 10px #ffd700;
-            }
-            to {
-                box-shadow: 0 0 20px #ffd700, 0 0 30px #ffd700;
-            }
-        }
-
         .team {
             margin: 20px 0;
             padding: 20px;
-            background: rgba(255, 215, 0, 0.1);
+            background: rgba(255, 215, 0, 0.05);
             border-radius: 15px;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(20px);
             width: 90%;
             max-width: 600px;
-            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(255, 215, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .team:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 45px 0 rgba(255, 215, 0, 0.15);
         }
 
         .team-title {
@@ -233,12 +253,13 @@
 
         .footer {
             width: 100%;
-            background: rgba(26, 26, 26, 0.9);
+            background: rgba(26, 26, 26, 0.8);
             padding: 20px;
             text-align: center;
             z-index: 2;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(20px);
             box-sizing: border-box;
+            border-top: 1px solid rgba(255, 215, 0, 0.1);
         }
 
         .copyright {
@@ -280,12 +301,18 @@
         .donate-box {
             margin: 20px 0;
             padding: 20px;
-            background: rgba(255, 215, 0, 0.1);
+            background: rgba(255, 215, 0, 0.05);
             border-radius: 15px;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(20px);
             width: 90%;
             max-width: 600px;
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(255, 215, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .donate-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 45px 0 rgba(255, 215, 0, 0.15);
         }
 
         .donate-title {
@@ -298,13 +325,20 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            background: rgba(26, 26, 26, 0.5);
-            padding: 10px;
-            border-radius: 10px;
+            background: rgba(26, 26, 26, 0.3);
+            padding: 15px;
+            border-radius: 15px;
             font-family: monospace;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             word-break: break-all;
             position: relative;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .ton-address:hover {
+            background: rgba(26, 26, 26, 0.4);
+            border-color: rgba(255, 215, 0, 0.2);
         }
 
         .ton-label {
@@ -400,12 +434,18 @@
         .other-services {
             margin: 20px 0;
             padding: 20px;
-            background: rgba(255, 215, 0, 0.1);
+            background: rgba(255, 215, 0, 0.05);
             border-radius: 15px;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(20px);
             width: 90%;
             max-width: 600px;
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(255, 215, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .other-services:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 45px 0 rgba(255, 215, 0, 0.15);
         }
 
         .other-services-title {
@@ -423,28 +463,30 @@
 
         .other-services-buttons .button {
             background: rgba(255, 215, 0, 0.1);
-            border: 1px solid #ffd700;
+            border: 1px solid rgba(255, 215, 0, 0.2);
             color: #ffd700;
             padding: 8px 20px;
             border-radius: 8px;
             font-weight: normal;
             transition: all 0.2s ease;
+            backdrop-filter: blur(10px);
         }
 
         .other-services-buttons .button:hover {
             background: rgba(255, 215, 0, 0.2);
             transform: translateY(-2px);
+            border-color: rgba(255, 215, 0, 0.3);
         }
 
         .credits {
-            background: rgba(255, 215, 0, 0.1);
+            background: rgba(255, 215, 0, 0.05);
             padding: 8px 15px;
             border-radius: 15px;
             font-size: 0.8em;
             color: #ffd700;
             opacity: 0.7;
             margin: 20px 0 10px 0;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(20px);
         }
 
         .credits a {
@@ -478,21 +520,21 @@
             <div class="social-buttons" style="margin-top: -15px;">
                 <a href="/info.html" class="button" style="padding: 8px 8px;">
                     <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEcElEQVR4nO2dzYvWVRTHP2n0OAMZvoaJ2iqLltUuo8CU0rTCWoorJUWT8k8IamFi6iwscuHytxCkRZgtSpJ2pb24UEezsaDMyWmRuRhP/OBIw8Dz9KjPvfec3+984LuZ13Pud7jv9wwEQRAEQRAEQRAEQRDcLguB1cAOYAT4HPgOGAXGgRuqcf1Y/bnj+rXbgVXAgmj2O2cYWA98oI17E5C7VP0zTgN7gXXAUBjUmxnA08BBYGIABvyf6t9xGHgJmBnm/McsYCtwIYMJ3VR3c28AnbZ3S7uAXwsaIdNUx/KWxtYq6m7iogEDpIvGgA20gIeBTww0uPSpo8BSGsrLOi0VZ5oAXqdBdHT6Ks51sAmD/jzgawONKQPSV8BcnPKQLuqkYToDLMEZjwI/G2g8SaRLwHKcsBj4yUCjSWJdBpbhYMw4Y6CxJJN+tDymdBo2gEufOml19nXAQONIIdXTelNsMNAoUlivYmg75JqBBpHC+tPKIF9yb+qangpuUo1kOkvptfdVlPUFk/+iy7Fsfdz7ZcG41lKI4YLrjbPA/T1imw2cLxTbhVLHw7sK/hVu7CO+TQXj20mBY9eSJ30P9hHjosKr+Kxrk60Fk5U+k+0UjnELGW+HlLyQIMBjfcT5eOEY6zHsngx+8FzhRAV4p4843zUQ5zMZ/OCQgUT/Bp7sEeNTwHUDcX6UY6r7l4FERReFG7ULvcVMnV1NGIpxqKkLQemi34BPVb8biGe61qQ0pAmXFSSzdqc0pIln5JJY36YyY+GAbqG3TZPA/BSGrDaQnDjVyhSG7DCQmDjVthSGjBhITJxqXwpDjhtITJzqWApDvjeQmEx7MlB10ZiB+Kaqfko3cKxdfqt6xFoZiG+q6s3YgXPVQGLi1JArKQy5YSAxcWrIP2EIzTckuixsdVkxqGNrULc27a0cjSGn27AwrBwZcqwNWyeVI0P2tWFzsXJkyLY2bL9XjgxJsv2+wNgBVeXEkEl96tf4I9zKiSHfkJC9BhIUZ4YkveSwzkCC4syQF1MaMmTo+VrlwJDkF+VqPjaQqDgx5EMy8KyBRMWJIStyGDJDaxSWTrYybsi5XM8R0IKRpROujBuymYzUr5N+CUPoZsZYiXIbb4chdDOk3vfLznDhyqKV0S7rvD6KLcILBvpqadN7kH44aqARxIiOYIClWnhFWq5xS7UY1xrbmpfMqnN/BWO0+bnbHgzS0XJ30jKdAO7DKA8Apww0kmTSD5aLYLatTOyYp0L9y7XYsDRUl4BHcMYivbEnDazVuwSnzG3YQH8CmINz7gXec75OuanTerOzqTutk+L1H7q8RkNZ5mzv64jn8eJ2t1pKV6WTHhq1sGubmyGt3nnZgAEyZW3xZsnzDCtbLlsK1tkVvZCwuWmD9iB4Qmczf2S6xHZYb6Znux3ilVnah+/RelOTAzBgUi8+v6/XO1vdLd0t84Hn9eHLfuAz3cQc1dfBt/5991X92Cl9RrZfv2dlyicBQRAEQRAEQRAEQRDQUP4FhzGgXHjslgoAAAAASUVORK5CYII=" 
-                    alt="info" width="30" height="30" style="width: 33px; height: 33px;">    
+                    alt="info" width="30" height="30" style="width: 33px; height: 33px; filter: invert(79%) sepia(71%) saturate(757%) hue-rotate(359deg) brightness(103%) contrast(104%);" >    
                 </a>
                 <a href="https://discord.gg/VpDzdgJY" class="button" style="padding: 0px 7px;">
                     <img src="data:image/png;base64,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"
-                    alt="discord" style="width: 35px; height: 35px; margin-left: 4px; margin-right: 4px;">
+                    alt="discord" style="width: 35px; height: 35px; margin-left: 4px; margin-right: 4px; filter: invert(79%) sepia(71%) saturate(757%) hue-rotate(359deg) brightness(103%) contrast(104%);">
                     
                 </a>
                 <a href="https://t.me/+OtxxYjLgRP00NzVi" class="button" style="padding: 0px 7px; ">
                     <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFZklEQVR4nO2dTWxVRRSAv4q0mIjVCpK4MRYTRZSFgj8tQmI0UROj0mpEiSL+LGx1IQbiAkLElXEhKkT8CdEYTTRUK90osjKuNNGFAaMJGhHxpyUkitpqGTPmNJKmfX333pm55753vuRsaDtz5pzHnXt+Zh4YhmEYhmEYhmEYhmEYhhGLduAKoBe4D+gHNor0y7/5ny2T3zUC0gasALYA+4AjgMsoR+Rvt8hYreah7E7oBQaB4zkcMJP4Md8DemQuYxouAHYARyM4YTrxc20HFppX/ucS4HXg74SOmCzjwB7gsmZ2zFnANjGGUyIn5MMxnyaiBXgAGFbgADeN/AqsE10bmrOBIQUGd3XK+6JzQ+Jjh4MKjOwyyvdANw3GPcCYAuO6nOJ1X0OD8KiyjdsV2PA3UHGeUmBIF1i2UlH6FRjPRZL1VIy7G+Qx5Wo8vtZSEborvoG7OsWv8WoqEH1/p8BYLuErsdo4pUWyqK7JZEhrRP+gAuO4ksQXxVTRIfkf16QyDMxDEa8oMIorWV5ECZfKa6BrchkHFqGANxUYwykRX0spvez6jwJDuBri//d+IxXBZyW35gPXG4BrgcuBq4CHgUMF5/JVz84yHbJDgcHdFEb5GNgErATOyLCec4FfCs7/AiXRlrghwdWQH2RTvS1AL9YzBXUZKavV6PaSnTAqjyGvx6kB1/VQAN38ByM5gyU54kvZB2KlLFYH0HGAxLRGamJzNeQLqTzOiry2mwPoejz1Y2tlQkd8AtyYcG3XB9J7eUKd/+uTje2Ig/JpTc0tgfTfnFLpfREd8RfwJHAa5XBXoHXsTal0ni70euRDCTYbIWt9OJXC7ZGCuY1K6gqPB8wQzE3V8KaxEa0b+AA4AOwCFuQcZ1vAtS0lAb0BFf4oUDxx/xQ5ta+BOTnGGgi4vlUkYG0gZQcDHZjZUCP9f0eO8T4L6JB7ScAjARR9C5hdUI8W4OkZ5vEZ3KyErHz63rToPBHAGUWj7VnAq3W8KFyccdwFAZ3hxFaqHTIm9fcizKnzOe/flrJyXRUdUuSR5eOXIpwusUqtOfx+8ljO8dcHdkgfyjf10QLHxebXseGOSTUwL7sCOyTJpt5TUElfRs3KecBXdWRYbyq4tv2BHbKqKoHhUIZs6KI6at1HAwSX50TonllatdTJfqlB+9NJ1wAXSpNAp7QX+Wf6sRnG+BFYoizgTZo6iZlcdBnlp4BdHs8F1i1ZcjF2+t1lkDyR+HTMtEepTr+nKFC5OsQffwjB4gi6+TakZKxQ4AwXsHayKYJuSUu4bSU0ObgpxD/3Q/B5YL1+C5Cry4yGwzknAvRALYmg125KoGiAGPLT2FVgHS9H0OlWmryV9FjOwNAXx/6IcHintFvrtitwhhP5E7hTwWb+PCWyUOFxhJ2SFa4nP/Z74LlLP47geUOBE9wkOST9VafU0PvdCPO+hgIWK7614YCUUedNKv2GavU5WbwNLkIJLykwvqsh/rH6KfBOhBTJhPjDS2roCHDyyFVYhjXe6LBOgWFcSaLyIppmvVpjj5IW2Cnx2ddvFRjJJRLVl89M0NUk1zONAldSEVYrfhV2gZKaSTpKQtKnwHAukuTt+yqdrQqM5wJLZS/BnMCuiVXImopv9KOSG2sollX4qvEuGpR2ySe5Cl3G30GD0yJpFs25r58lHaI2Ao/BmXLAUlOBa1wuIVN1f2IZVcedCr7y6G0tV/RpoVPq0SMJHTEic55f9uI10yq9VgMRat5OxtwtrTr2nYYZmS0tmZuleflwztvm9soYy8voKGx05spBmB55E+o76atX+yTp1yO/k+x8hmEYhmEYhmEYhmEYhmHQZPwLuyE0gpG98vUAAAAASUVORK5CYII="
-                        alt="telegram" width="35" height="35" style="width: 40px; height: 40px;">
+                        alt="telegram" width="35" height="35" style="width: 40px; height: 40px; filter: invert(79%) sepia(71%) saturate(757%) hue-rotate(359deg) brightness(103%) contrast(104%);">
                     Telegram&nbsp;&nbsp;&nbsp; 
                 </a>
                 <a href="https://github.com/zagip" class="button" style="padding: 10px 10px;">
                     <img src="data:image/png;base64,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" 
-                    alt="github" width="30" height="30" style="width: 30px; height: 30px;">    
+                    alt="github" width="30" height="30" style="width: 30px; height: 30px; filter: invert(79%) sepia(71%) saturate(757%) hue-rotate(359deg) brightness(103%) contrast(104%);">    
                 </a>
             </div>
         </div>
