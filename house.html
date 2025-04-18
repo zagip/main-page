@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Загипычи House</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: #1a1a1a;
+            color: #ffd700;
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100%;
+            position: relative;
+        }
+        
+        .container {
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .title {
+            font-size: 3em;
+            margin: 20px 0;
+            color: #ffd700;
+            position: relative;
+            animation: glow 1.5s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #ffd700;
+            }
+            to {
+                text-shadow: 0 0 20px #ffd700, 0 0 30px #ffd700;
+            }
+        }
+        
+        .matrix-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .footer {
+            width: 100%;
+            background: rgba(26, 26, 26, 0.9);
+            padding: 20px;
+            text-align: center;
+            z-index: 2;
+            backdrop-filter: blur(5px);
+            box-sizing: border-box;
+        }
+
+        .copyright {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas class="matrix-rain"></canvas>
+    
+    <div class="container">
+        <h1 class="title">Zagip House</h1>
+    </div>
+
+    <footer class="footer">
+        <div class="copyright">© 2025 Загипычи Official. All rights reserved.</div>
+    </footer>
+
+    <script>
+        const canvas = document.querySelector('.matrix-rain');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        
+        resizeCanvas();
+
+        const chars = 'ЗАГИПЫЧИ52'.split('');
+        const fontSize = 14;
+        let columns = canvas.width / fontSize;
+        let drops = Array(Math.floor(columns)).fill(1);
+
+        function initMatrix() {
+            ctx.fillStyle = 'rgba(26, 26, 26, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            drops = drops.map(() => Math.floor(Math.random() * canvas.height / fontSize));
+            ctx.fillStyle = '#ffd70022';
+            ctx.font = fontSize + 'px monospace';
+            
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+            }
+        }
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(26, 26, 26, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#ffd70022';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        initMatrix();
+        setInterval(drawMatrix, 50);
+
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            columns = canvas.width / fontSize;
+            drops = Array(Math.floor(columns)).fill(1);
+        });
+    </script>
+</body>
+</html>
