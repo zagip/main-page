@@ -456,6 +456,197 @@
         .credits a:hover {
             opacity: 0.8;
         }
+        .hosting-box {
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.15);
+        }
+        
+        .hosting-title {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #ffd700;
+        }
+        
+        .hosting-packages {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .hosting-package {
+            background: rgba(26, 26, 26, 0.5);
+            border: 1px solid #ffd700;
+            border-radius: 15px;
+            padding: 20px;
+            width: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .hosting-package:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.15);
+        }
+        
+        .package-name {
+            font-size: 1.2em;
+            color: #ffd700;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        .package-specs {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        
+        .spec-item {
+            margin: 0px 0;
+            color: #ffd700;
+            text-align: center;
+            font-size: 1em;
+        }
+        
+        .spec-value {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .package-price {
+            font-size: 1.4em;
+            color: #ffd700;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .reserve-button {
+            background: none;
+            color: #ffd700;
+            border: 1px solid #ffd700;
+            padding: 10px 20px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .reserve-button:hover {
+            background: rgba(255, 215, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .hosting-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal-content {
+            background: rgba(26, 26, 26, 0.9);
+            margin: 15% auto;
+            padding: 25px;
+            border: 1px solid #ffd700;
+            border-radius: 15px;
+            width: 80%;
+            max-width: 500px;
+            position: relative;
+            animation: modalFadeIn 0.4s;
+        }
+        
+        @keyframes modalFadeIn {
+            from {opacity: 0; transform: translateY(-30px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+        
+        .close-modal {
+            color: #ffd700;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .close-modal:hover {
+            color: #ffed4a;
+            transform: scale(1.1);
+        }
+        
+        .modal-title {
+            color: #ffd700;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .modal-specs {
+            color: #ffd700;
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .modal-description {
+            color: #ffd700;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            text-align: center;
+        }
+        
+        .reserve-now-button {
+            display: block;
+            width: 80%;
+            margin: 0 auto;
+            background: none;
+            color: #ffd700;
+            border: 1px solid #ffd700;
+            text-align: center;
+            padding: 12px 0;
+            border-radius: 15px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .reserve-now-button:hover {
+            background: rgba(255, 215, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .hosting-packages {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .hosting-package {
+                width: 90%;
+                max-width: 250px;
+            }
+            
+            .modal-content {
+                width: 90%;
+                margin: 30% auto;
+            }
+        }
     </style>
 </head>
 <body>
@@ -517,6 +708,43 @@
                 <a href="https://t.me/sigamguatbotruzlbot" class="button">Забимбыш BOT</a>
                 <a href="https://t.me/zagipon_bot" class="button">Zagipon BOT</a>
                 <a href="https://zagip.ru/slots/" class="button">Slots</a>
+            </div>
+        </div>
+
+        <div class="hosting-box">
+            <div class="hosting-title">Zagip Hosting <a href="https://server.silaeder.ru" style="font-size: 0.7em; color: #ffd700; text-decoration: none; opacity: 0.8;">(by Silaeder Server)</a></div>
+            <div class="hosting-packages">
+                <div class="hosting-package">
+                    <div class="package-name">mini</div>
+                    <div class="package-specs">
+                        <div class="spec-item"><span class="spec-value">2</span> CPU</div>
+                        <div class="spec-item"><span class="spec-value">3</span> GB RAM</div>
+                        <div class="spec-item"><span class="spec-value">32</span> GB SSD</div>
+                    </div>
+                    <div class="package-price">97₽/мес</div>
+                    <button class="reserve-button" onclick="showDescription('tazik')">Получить</button>
+                </div>
+                
+                <div class="hosting-package">
+                    <div class="package-name">ГИПер</div>
+                    <div class="package-specs">
+                        <div class="spec-item"><span class="spec-value">4</span> CPU</div>
+                        <div class="spec-item"><span class="spec-value">4</span> GB RAM</div>
+                        <div class="spec-item"><span class="spec-value">52</span> GB SSD</div>
+                    </div>
+                    <div class="package-price">152₽/мес</div>
+                    <button class="reserve-button" onclick="showDescription('vedro')">Получить</button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="hosting-modal" class="hosting-modal">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeModal()">&times;</span>
+                <div id="modal-title" class="modal-title"></div>
+                <div id="modal-specs" class="modal-specs"></div>
+                <div id="modal-description" class="modal-description"></div>
+                <a id="modal-button" class="reserve-now-button">Получить</a>
             </div>
         </div>
 
@@ -769,6 +997,45 @@
             lastMouseY = e.clientY;
             lastMouseTime = currentTime;
         });
+
+
+
+
+
+        function showDescription(type) {
+            const modal = document.getElementById('hosting-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalSpecs = document.getElementById('modal-specs');
+            const modalDescription = document.getElementById('modal-description');
+            const modalButton = document.getElementById('modal-button');
+            
+            if (type === 'tazik') {
+                modalTitle.textContent = 'mini';
+                modalSpecs.innerHTML = '2 CPU • 3 GB RAM • 32 GB SSD';
+                modalDescription.textContent = 'Компактный и мощный хостинг для небольших проектов. Запускайте сайты и боты без лагов, а наша поддержка всегда поможет с любым вопросом!';
+                modalButton.href = 'https://t.me/m/vOgvmmSHMjBi';
+            } else if (type === 'vedro') {
+                modalTitle.textContent = 'ГИПер';
+                modalSpecs.innerHTML = '4 CPU • 4 GB RAM • 52 GB SSD';
+                modalDescription.textContent = 'Увеличенная мощность для растущих проектов. Больше ресурсов, больше возможностей - идеально для требовательных приложений и высоких нагрузок.';
+                modalButton.href = 'https://t.me/m/mVTGylw6ZmEy';
+            }
+            
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            document.getElementById('hosting-modal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        window.onclick = function(event) {
+            const modal = document.getElementById('hosting-modal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
     </script>
 </body>
 </html>
