@@ -655,7 +655,7 @@
     <div class="notification">tap space ✨</div>
     
     <div class="container">
-        <img src="zagipichi_logo.png" alt="Загипычи логотип" class="logo">
+        <img src="https://zagip.ru/zagipichi_logo.png" alt="Загипычи логотип" class="logo">
         <h1 class="title">Загипычи</h1>
         <div class="content">// lol</div>
         <div class="buttons">
@@ -1036,9 +1036,11 @@
             }
         }
     if (window.Telegram) {
-        let webApp = window.Telegram.WebApp;
-        webApp.expand(); // Ensure main viewport is displayed
-        document.body.style.paddingTop = "100px";
+        let webApp = window.Telegram.WebApp; // Ensure main viewport is displayed
+        if (window.innerWidth <= 700) {
+            document.body.style.paddingTop = "50px";
+            webApp.requestFullscreen();
+        }
 
         webApp.MainButton.setParams({
             text: 'Подписаться',
