@@ -1037,6 +1037,8 @@
         }
     if (window.Telegram) {
         let webApp = window.Telegram.WebApp;
+        webApp.expand(); // Ensure main viewport is displayed
+        document.body.style.paddingTop = "100px";
 
         webApp.MainButton.setParams({
             text: 'Подписаться',
