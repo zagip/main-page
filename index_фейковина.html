@@ -33,6 +33,123 @@
             }
         }
 
+        .notification {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(26, 26, 26, 0.9);
+            color: #ffd700;
+            padding: 15px 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 1px solid #ffd700;
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            font-size: 1em;
+        }
+
+        .notification.show {
+            opacity: 1;
+        }
+
+        .garland {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 220px;
+            pointer-events: none;
+            display: flex;
+            justify-content: center;
+            z-index: 3;
+        }
+
+        .garland-svg {
+            width: 100%;
+            height: 220px;
+        }
+
+        .garland-path {
+            fill: none;
+            stroke: rgba(255, 215, 0, 0.45);
+            stroke-width: 5;
+            stroke-linecap: round;
+            filter: drop-shadow(0 10px 16px rgba(255, 215, 0, 0.25));
+        }
+
+        .garland-handle {
+            fill: #9e9c99;
+            stroke-width: 1;
+            rx: 3;
+            ry: 3;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
+        }
+
+        .garland-bulb {
+            fill: var(--bulb-color, #ffd700);
+            transform-origin: center;
+            transform-box: fill-box;
+            opacity: 1;
+            transform: scale(var(--bulb-scale, 1));
+            filter: drop-shadow(0 0 var(--bulb-blur, 48px) rgba(255, 237, 74, 1));
+            box-shadow: 0 0 var(--bulb-halo, 85px) rgba(255, 215, 0, 1);
+            animation: bulbBreathe var(--breathe-duration, 4.8s) ease-in-out infinite alternate;
+            animation-delay: var(--breathe-delay, 0s);
+        }
+
+        @keyframes bulbBreathe {
+            0% {
+                opacity: 0.95;
+                transform: scale(calc(var(--bulb-scale, 1) * 0.98));
+                filter: drop-shadow(0 0 var(--bulb-blur, 48px) rgba(255, 237, 74, 0.9));
+                box-shadow: 0 0 var(--bulb-halo, 85px) rgba(255, 215, 0, 0.9);
+            }
+            100% {
+                opacity: 1.12;
+                transform: scale(calc(var(--bulb-scale, 1) * var(--breathe-scale, 1.12)));
+                filter: drop-shadow(0 0 calc(var(--bulb-blur, 48px) * 1.45) rgba(255, 237, 74, 1));
+                box-shadow: 0 0 calc(var(--bulb-halo, 85px) * 1.5) rgba(255, 215, 0, 1);
+            }
+        }
+
+        .snow-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .snowflake {
+            position: absolute;
+            top: 10vh;
+            width: 6px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 50%;
+            animation: snowFall linear infinite;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+            opacity: 0;
+        }
+
+        @keyframes snowFall {
+            0% {
+                transform: translate3d(0, -10vh, 0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate3d(var(--x-drift, 0px), 110vh, 0) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
         .container {
             text-align: center;
             padding: 20px;
@@ -116,113 +233,12 @@
             justify-content: center;
             margin-bottom: 20px;
         }
-        .alerts-box {
-            width: 90%;
-            max-width: 640px;
-            margin: 0 auto 25px;
-            background: rgba(26, 26, 26, 0.85);
-            border: 1px solid rgba(255, 215, 0, 0.4);
-            border-radius: 15px;
-            padding: 18px 22px;
-            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.12);
-        }
-        .alerts-title {
-            color: #ffd700;
-            font-size: 1.25em;
-            font-weight: bold;
-            margin-bottom: 14px;
-            text-align: left;
-        }
-        .alerts-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        .alert-item {
-            padding: 12px 14px;
-            border-radius: 12px;
-            background: rgba(255, 215, 0, 0.08);
-            border: 1px solid rgba(255, 215, 0, 0.25);
-        }
-        .alert-title {
-            color: #ffd700;
-            font-weight: 600;
-            margin-bottom: 6px;
-        }
-        .alert-message {
-            color: #f6d87f;
-            font-size: 0.95em;
-            margin-bottom: 6px;
-        }
-        .alert-date {
-            font-size: 0.8em;
-            color: rgba(255, 215, 0, 0.7);
-        }
-        .alerts-empty {
-            color: rgba(255, 215, 0, 0.7);
-            font-size: 0.95em;
-        }
 
         .social-buttons {
             display: flex;
             gap: 13px;
             flex-wrap: wrap;
             justify-content: center;
-        }
-        .garland {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            gap: 40px;
-            padding: 10px 6% 0;
-            pointer-events: none;
-            z-index: 3;
-            align-items: flex-start;
-        }
-        .garland::before {
-            content: '';
-            position: absolute;
-            top: 12px;
-            left: 0px;
-            width: 90%;
-            height: 3px;
-            background: linear-gradient(90deg, rgba(255, 215, 0, 0.15), rgba(255, 215, 0, 0.7), rgba(255, 215, 0, 0.15));
-            border-radius: 2px;
-            box-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
-        }
-        .garland-bulb {
-            width: 16px;
-            height: 24px;
-            border-radius: 45% 45% 55% 55%;
-            background: radial-gradient(circle at 30% 20%, #fff6c2, #ffd200 55%, #c7a000);
-            box-shadow: 0 0 8px rgba(255, 215, 0, 0.9), 0 0 14px rgba(255, 215, 0, 0.6);
-            animation: bulbGlow 1.8s ease-in-out infinite alternate;
-            position: relative;
-            top: 24px;
-            transform-origin: top center;
-        }
-        .garland-bulb::before {
-            content: '';
-            position: absolute;
-            top: -16px;
-            left: 50%;
-            width: 2px;
-            height: 18px;
-            background: linear-gradient(to bottom, rgba(120, 86, 0, 0.9), rgba(255, 215, 0, 0.5));
-            transform: translateX(-50%);
-            border-radius: 2px;
-            box-shadow: 0 0 4px rgba(255, 215, 0, 0.4);
-        }
-        .garland-bulb:nth-child(2n) {
-            background: radial-gradient(circle at 30% 20%, #fff6da, #ffe24a 55%, #b88a00);
-            animation-delay: 0.4s;
-        }
-        .garland-bulb:nth-child(3n) {
-            background: radial-gradient(circle at 30% 20%, #fff4b0, #ffce34 55%, #da9b00);
-            animation-delay: 0.8s;
         }
         
         .button {
@@ -328,37 +344,7 @@
             opacity: 0.8;
         }
         
-        .matrix-rain {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .confetti {
-            position: fixed;
-            width: 8px;
-            height: 8px;
-            background-color: #ffd700;
-            pointer-events: none;
-            z-index: 9999;
-            animation: confettiFall 3s ease-out forwards;
-        }
-
-        @keyframes confettiFall {
-            0% {
-                transform: translate(0, 0) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translate(var(--tx), var(--ty)) rotate(var(--rot));
-                opacity: 0;
-            }
-        }
-
+        
         .donate-box {
             margin: 20px 0;
             padding: 20px;
@@ -451,46 +437,14 @@
 
         .flying-element {
             position: fixed;
-            width: 30px;
-            height: 30px;
             pointer-events: none;
             z-index: 9999;
             animation: elementFloat 1s ease-out forwards;
-            background-size: contain;
-            background-repeat: no-repeat;
-        }
-
-        .flying-element.rocket {
-            background-image: url('static/rocket.png');
-        }
-
-        .flying-element.like {
-            background-image: url('static/like.png');
-        }
-        .flying-element.snowman {
-            background-image: url('static/snowman.png');
-        }
-        .flying-element.gift {
-            background-image: url('static/gift.png');
-        }
-        .flying-element.snowfake {
-            background-image: url('static/snowflake.png');
-        }
-        .snowflake {
-            position: fixed;
-            top: -40px;
-            width: 12px;
-            height: 12px;
-            background-image: url('static/snowflake.png');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            opacity: 0.9;
-            animation-name: snowFall;
-            animation-timing-function: linear;
-            animation-iteration-count: infinite;
-            pointer-events: none;
-            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.4));
         }
 
         @keyframes elementFloat {
@@ -500,31 +454,6 @@
             }
             100% {
                 transform: translate(var(--tx), var(--ty)) rotate(var(--rot)) scale(1);
-                opacity: 0;
-            }
-        }
-        @keyframes bulbGlow {
-            from {
-                transform:  translateY(-5px);
-                box-shadow: 0 0 6px rgba(255, 215, 0, 0.7), 0 0 12px rgba(255, 215, 0, 0.4);
-                opacity: 0.7;
-            }
-            to {
-                transform:  translateY(0px) scale(1.05);
-                box-shadow: 0 0 12px rgba(255, 215, 0, 1), 0 0 20px rgba(255, 215, 0, 0.8);
-                opacity: 1;
-            }
-        }
-        @keyframes snowFall {
-            0% {
-                transform: translate3d(0, 0, 0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.8;
-            }
-            100% {
-                transform: translate3d(var(--drift, 0px), var(--fall-distance, 100vh), 0);
                 opacity: 0;
             }
         }
@@ -568,6 +497,26 @@
             transform: translateY(-2px);
         }
 
+        .credits {
+            background: rgba(255, 215, 0, 0.1);
+            padding: 8px 15px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            color: #ffd700;
+            opacity: 0.7;
+            margin: 20px 0 10px 0;
+            backdrop-filter: blur(5px);
+        }
+
+        .credits a {
+            color: #ffd700;
+            text-decoration: none;
+            transition: opacity 0.2s ease;
+        }
+
+        .credits a:hover {
+            opacity: 0.8;
+        }
         .hosting-box {
             margin: 20px 0;
             padding: 20px;
@@ -762,19 +711,40 @@
     </style>
 </head>
 <body>
-    <div class="garland" aria-hidden="true">
-        <span class="garland-bulb"></span>
-        <span class="garland-bulb"></span>
-        <span class="garland-bulb"></span>
-        <span class="garland-bulb"></span>
-        <span class="garland-bulb"></span>
-        <span class="garland-bulb"></span>
-        <span class="garland-bulb"></span>
-        <span class="garland-bulb"></span>
-        <span class="garland-bulb"></span>
-        <span class="garland-bulb"></span>
-        <span class="garland-bulb"></span>
-        <span class="garland-bulb"></span>
+    <div class="garland">
+        <svg class="garland-svg" viewBox="0 0 1200 220" preserveAspectRatio="xMidYMid meet">
+            <path class="garland-path" d="M0 5 Q600 220 1200 5" />
+            <line class="garland-path" x1="80" y1="60" x2="80" y2="32" stroke="#ffd700" stroke-width="4" />
+            <rect class="garland-handle" x="74" y="42" width="12" height="9" />
+            <circle class="garland-bulb" cx="80" cy="60" r="13" style="--bulb-color: #ffed4a; --delay: 0s;" />
+            <line class="garland-path" x1="200" y1="95" x2="200" y2="65" stroke="#ffd700" stroke-width="4" />
+            <rect class="garland-handle" x="194" y="76" width="12" height="9" />
+            <circle class="garland-bulb" cx="200" cy="95" r="13" style="--bulb-color: #ffd700; --delay: 0.25s;" />
+            <line class="garland-path" x1="320" y1="115" x2="320" y2="88" stroke="#ffd700" stroke-width="4" />
+            <rect class="garland-handle" x="314" y="95" width="12" height="9" />
+            <circle class="garland-bulb" cx="320" cy="115" r="13" style="--bulb-color: #f6c02f; --delay: 0.5s;" />
+            <line class="garland-path" x1="440" y1="130" x2="440" y2="104" stroke="#ffd700" stroke-width="4" />
+            <rect class="garland-handle" x="434" y="110" width="12" height="9" />
+            <circle class="garland-bulb" cx="440" cy="130" r="13" style="--bulb-color: #ffd700; --delay: 0.75s;" />
+            <line class="garland-path" x1="560" y1="140" x2="560" y2="112" stroke="#ffd700" stroke-width="4" />
+            <rect class="garland-handle" x="554" y="120" width="12" height="9" />
+            <circle class="garland-bulb" cx="560" cy="140" r="13" style="--bulb-color: #ffed4a; --delay: 1s;" />
+            <line class="garland-path" x1="680" y1="140" x2="680" y2="110" stroke="#ffd700" stroke-width="4" />
+            <rect class="garland-handle" x="674" y="120" width="12" height="9" />
+            <circle class="garland-bulb" cx="680" cy="140" r="13" style="--bulb-color: #f7b60b; --delay: 1.25s;" />
+            <line class="garland-path" x1="800" y1="130" x2="800" y2="100" stroke="#ffd700" stroke-width="4" />
+            <rect class="garland-handle" x="794" y="110" width="12" height="9" />
+            <circle class="garland-bulb" cx="800" cy="130" r="13" style="--bulb-color: #ffd700; --delay: 1.5s;" />
+            <line class="garland-path" x1="920" y1="115" x2="920" y2="82" stroke="#ffd700" stroke-width="4" />
+            <rect class="garland-handle" x="914" y="95" width="12" height="9" />
+            <circle class="garland-bulb" cx="920" cy="115" r="13" style="--bulb-color: #ffed4a; --delay: 1.75s;" />
+            <line class="garland-path" x1="1040" y1="85" x2="1040" y2="55" stroke="#ffd700" stroke-width="4" />
+            <rect class="garland-handle" x="1034" y="67" width="12" height="9" />
+            <circle class="garland-bulb" cx="1040" cy="85" r="13" style="--bulb-color: #f6c02f; --delay: 2s;" />
+            <line class="garland-path" x1="1160" y1="50" x2="1160" y2="18" stroke="#ffd700" stroke-width="4" />
+            <rect class="garland-handle" x="1154" y="32" width="12" height="9" />
+            <circle class="garland-bulb" cx="1160" cy="50" r="13" style="--bulb-color: #ffd700; --delay: 2.25s;" />
+        </svg>
     </div>
     <div class="container">
         <img src="https://zagip.ru/zagipichi_logo.png" alt="Загипычи логотип" class="logo">
@@ -788,10 +758,6 @@
                 <a href="http://zagip.ru:53000/" class="button special">Agario</a>
                 <!-- <a href="https://zagip.ru/slots" class="button special">Slots</a> -->
                 <!-- <a href="https://t.me/zagipon_bot" class="button special">Zagipon BOT</a> -->
-            </div>
-            <div class="alerts-box" style="display: none;">
-                <div class="alerts-title">alerts</div>
-                <div class="alerts-list"></div>
             </div>
             <div class="social-buttons" style="margin-top: -15px;">
                 <a href="/info.html" class="button" style="padding: 8px 8px;">
@@ -877,12 +843,11 @@
             <div class="donate-title">donate</div>
             <div class="ton-address">
                 <span class="ton-label">TON:</span>
-                <span class="address-text">UQAg0ASFaNyyP8tuBzcdv8rev8-cM3pairuBvYv_Pf4EDOOo</span>
+                <span class="address-text">UQBw4te8jzfqzQSiKwS0RtBd9JX8Qn_mB8ZdANvcWJWNWhYx</span>
                 <button class="copy-button" onclick="copyTonAddress(this)" title="Copy address"></button>
             </div>
             <div class="ton-balance">Loading balance...</div>
         </div>
-
     </div>
 
     <footer class="footer">
@@ -911,12 +876,49 @@
             });
         }
 
+        const snowContainer = document.createElement('div');
+        snowContainer.className = 'snow-container';
+        document.body.appendChild(snowContainer);
+
+        const snowflakeCount = isMobile ? 120 : 240;
+
+        for (let i = 0; i < snowflakeCount; i++) {
+            const snowflake = document.createElement('span');
+            snowflake.className = 'snowflake';
+            snowflake.style.left = Math.random() * 100 + 'vw';
+            snowflake.style.animationDelay = Math.random() * 10 + 's';
+            snowflake.style.animationDuration = Math.random() * 10 + 12 + 's';
+            const size = Math.random() * 4 + 4;
+            snowflake.style.width = size + 'px';
+            snowflake.style.height = size + 'px';
+            snowflake.style.setProperty('--x-drift', (Math.random() * 40 - 20) + 'px');
+            snowContainer.appendChild(snowflake);
+        }
+
+        // s3cr3t-c0de-716
+  
+
+        const bulbs = Array.from(document.querySelectorAll('.garland-bulb'));
+        bulbs.forEach((bulb, index) => {
+            const duration = 4.8;
+            const delay = (index % 5) * 0.4;
+            const scaleBoost = 1.06;
+
+            bulb.style.setProperty('--breathe-duration', `${duration}s`);
+            bulb.style.setProperty('--breathe-delay', `${delay}s`);
+            bulb.style.setProperty('--breathe-scale', scaleBoost);
+        });
+       
+
         function copyTonAddress(element) {
             const addressText = element.parentElement.querySelector('.address-text').innerText.trim();
             navigator.clipboard.writeText(addressText).then(() => {
-                console.log('TON address copied');
-            }).catch(() => {
-                console.error('Failed to copy TON address');
+                const notification = document.querySelector('.notification');
+                notification.textContent = 'copied ✨';
+                notification.classList.add('show');
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 2500);
             });
         }
 
@@ -967,33 +969,34 @@
             
             // Если скорость выше порога, создаем элементы
             if (mouseSpeed > 0.5) {
-                // Создаем ракету и лайк
-                ['snowfake', 'gift', 'snowman'].forEach(type => {
+                const cursorEmojis = ['🎄', '🎁', '⛄', '🧦', '✨'];
+                for (let i = 0; i < 2; i++) {
                     const element = document.createElement('div');
-                    element.className = `flying-element ${type}`;
-                    
+                    element.className = 'flying-element';
+                    element.textContent = cursorEmojis[Math.floor(Math.random() * cursorEmojis.length)];
+
                     // Устанавливаем начальную позицию
                     element.style.left = e.clientX + 'px';
                     element.style.top = e.clientY + 'px';
-                    
+
                     // Генерируем случайное направление полета
                     const angle = Math.random() * Math.PI * 2;
                     const distance = Math.random() * 100 + 50;
                     const tx = Math.cos(angle) * distance;
                     const ty = Math.sin(angle) * distance;
-                    
+
                     // Устанавливаем CSS переменные для анимации
                     element.style.setProperty('--tx', tx + 'px');
                     element.style.setProperty('--ty', ty + 'px');
                     element.style.setProperty('--rot', (Math.random() * 360) + 'deg');
-                    
+
                     document.body.appendChild(element);
-                    
+
                     // Удаляем элемент после завершения анимации
                     setTimeout(() => {
                         element.remove();
                     }, 1000);
-                });
+                }
             }
             
             // Обновляем последние координаты и время
@@ -1001,84 +1004,11 @@
             lastMouseY = e.clientY;
             lastMouseTime = currentTime;
         });
-        function initSnowflakes() {
-            const snowflakeCount = 200;
-            for (let i = 0; i < snowflakeCount; i++) {
-                const flake = document.createElement('div');
-                const size = Math.random() * 15 + 20;
-                flake.className = 'snowflake';
-                flake.style.left = Math.random() * 100 + 'vw';
-                flake.style.animationDuration = Math.random() * 10 + 10 + 's';
-                flake.style.animationDelay = Math.random() * 10 + 's';
-                flake.style.setProperty('--fall-distance', window.innerHeight + 100 + 'px');
-                flake.style.setProperty('--drift', (Math.random() * 60 - 30) + 'px');
-                flake.style.width = size + 'px';
-                flake.style.height = size + 'px';
-                document.body.appendChild(flake);
-            }
-        }
-        initSnowflakes();
-        const alertsEndpoint = 'http://lenec.ru:8000/alerts';
-        const alertsBoxElement = document.querySelector('.alerts-box');
-        const alertsListElement = document.querySelector('.alerts-list');
 
-        function renderAlerts(alerts) {
-            if (!alerts.length) {
-                alertsListElement.innerHTML = '';
-                alertsBoxElement.style.display = 'none';
-                return;
-            }
 
-            alertsBoxElement.style.display = '';
-            alertsListElement.innerHTML = '';
-            alerts.slice(0, 5).forEach((alert) => {
-                const wrapper = document.createElement('div');
-                wrapper.className = 'alert-item';
 
-                const titleEl = document.createElement('div');
-                titleEl.className = 'alert-title';
-                titleEl.innerHTML = alert.title || 'untitled';
 
-                const messageEl = document.createElement('div');
-                messageEl.className = 'alert-message';
-                messageEl.innerHTML = alert.message || '';
 
-                const dateEl = document.createElement('div');
-                dateEl.className = 'alert-date';
-                const created = alert.created_at ? new Date(alert.created_at) : null;
-                dateEl.textContent = created ? created.toLocaleString() : '';
-
-                wrapper.appendChild(titleEl);
-                wrapper.appendChild(messageEl);
-                wrapper.appendChild(dateEl);
-                alertsListElement.appendChild(wrapper);
-            });
-        }
-
-        function renderAlertsError() {
-            alertsListElement.innerHTML = '';
-            alertsBoxElement.style.display = 'none';
-        }
-
-        async function loadAlerts() {
-            try {
-                const response = await fetch(alertsEndpoint, { headers: { accept: 'application/json' } });
-                if (!response.ok) {
-                    throw new Error('Failed to fetch alerts');
-                }
-                const data = await response.json();
-                if (Array.isArray(data)) {
-                    renderAlerts(data);
-                } else {
-                    renderAlerts([]);
-                }
-            } catch (error) {
-                console.error('alert fetch error:', error);
-                renderAlertsError();
-            }
-        }
-        loadAlerts();
-        setInterval(loadAlerts, 60000);
         function showDescription(type) {
             const modal = document.getElementById('hosting-modal');
             const modalTitle = document.getElementById('modal-title');
