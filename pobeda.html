@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Загипычи Победа</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+    <div class="matrix-rain" id="matrix-rain" aria-hidden="true"></div>
+
+    <div class="container victory-content">
+        <img src="static/logos/zagipichi_logo_xmas.png" alt="Загипычи логотип" class="logo victory-logo">
+        <h1 class="title">Загипычи Победа</h1>
+
+        <section class="victory-card victory-counter" aria-live="polite">
+            <h3>Загипычи побеждают уже <span id="victory-years">0</span> года</h3>
+        </section>
+
+        <button type="button" class="button special victory-button" id="victory-button">Побеждать с нами</button>
+
+        <section class="victory-card victory-scroll-card">
+            <div class="victory-scroll" id="months-container"></div>
+        </section>
+
+        <div class="victory-videos">
+            <div class="victory-video-card">
+                <video class="victory-video" autoplay loop muted playsinline>
+                    <source src="static/vids/1.mp4" type="video/mp4">
+                    Ваш браузер не поддерживает встроенное видео.
+                </video>
+            </div>
+            <div class="victory-video-card">
+                <video class="victory-video" autoplay loop muted playsinline>
+                    <source src="static/vids/2.mp4" type="video/mp4">
+                    Ваш браузер не поддерживает встроенное видео.
+                </video>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="copyright">© <span id="victory-year"></span> Загипычи Official. Все права защищены.</div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <script>
+        (function() {
+            const yearsSpan = document.getElementById('victory-years');
+            function updateYears() {
+                if (!yearsSpan) return;
+                const years = (Date.now() - new Date('2022-01-01').getTime()) / (1000 * 60 * 60 * 24 * 365.25);
+                yearsSpan.textContent = years.toFixed(8);
+            }
+            updateYears();
+            setInterval(updateYears, 100);
+
+            const monthsContainer = document.getElementById('months-container');
+            function buildMonths() {
+                if (!monthsContainer) return;
+                monthsContainer.innerHTML = '';
+                const months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+                const start = new Date(2022, 8);
+                const now = new Date();
+                const sections = [];
+
+                for (let year = start.getFullYear(); year <= now.getFullYear(); year++) {
+                    const section = document.createElement('div');
+                    section.className = 'victory-year-section';
+                    const heading = document.createElement('h2');
+                    heading.textContent = year;
+                    section.appendChild(heading);
+
+                    months.forEach((month, index) => {
+                        const currentDate = new Date(year, index);
+                        if (currentDate >= start && currentDate <= now) {
+                            const entry = document.createElement('p');
+                            entry.textContent = `${month} ${year} - Загипычи побеждают!`;
+                            section.appendChild(entry);
+                        }
+                    });
+
+                    if (section.children.length > 1) {
+                        sections.push(section);
+                    }
+                }
+
+                sections.forEach(section => monthsContainer.appendChild(section.cloneNode(true)));
+                sections.forEach(section => monthsContainer.appendChild(section.cloneNode(true)));
+            }
+            buildMonths();
+
+            const matrixWords = ['Загипычи', 'Талимыч', 'Стручпик', 'Алешка', 'Таракантул', 'Пепез', 'Белив', 'Победа', 'Гойда'];
+            const matrixContainer = document.getElementById('matrix-rain');
+            function createMatrixRain() {
+                if (!matrixContainer) return;
+                matrixContainer.innerHTML = '';
+                const columnCount = Math.max(8, Math.floor(window.innerWidth / 80));
+                const columnWidth = window.innerWidth / columnCount;
+
+                for (let i = 0; i < columnCount; i++) {
+                    const column = document.createElement('div');
+                    column.className = 'matrix-column';
+                    column.style.left = `${i * columnWidth}px`;
+                    column.textContent = matrixWords[Math.floor(Math.random() * matrixWords.length)];
+                    column.style.animationDuration = `${Math.random() * 5 + 4}s`;
+                    column.style.animationDelay = `${Math.random() * 2}s`;
+                    matrixContainer.appendChild(column);
+
+                    column.addEventListener('animationiteration', () => {
+                        column.textContent = matrixWords[Math.floor(Math.random() * matrixWords.length)];
+                    });
+                }
+            }
+            createMatrixRain();
+
+            let resizeTimeout;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(createMatrixRain, 200);
+            });
+
+            const victoryButton = document.getElementById('victory-button');
+            function celebrate() {
+                const defaults = {
+                    spread: 360,
+                    ticks: 100,
+                    gravity: 0.5,
+                    decay: 0.94,
+                    startVelocity: 30,
+                    colors: ['#ffcc00', '#ffd633', '#ffdb4d', '#ffe066', '#ffe680', '#ffeb99']
+                };
+
+                function shoot() {
+                    confetti({
+                        ...defaults,
+                        particleCount: 50,
+                        scalar: 1.2,
+                        shapes: ['circle']
+                    });
+                }
+
+                for (let i = 0; i < 5; i++) {
+                    setTimeout(shoot, i * 200);
+                }
+
+                setTimeout(() => {
+                    window.location.href = 'https://zagip.ru';
+                }, 2000);
+            }
+            if (victoryButton) {
+                victoryButton.addEventListener('click', celebrate);
+            }
+
+            const footerYear = document.getElementById('victory-year');
+            if (footerYear) {
+                footerYear.textContent = new Date().getFullYear();
+            }
+        })();
+    </script>
+</body>
+</html>
